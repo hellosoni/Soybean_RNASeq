@@ -1,0 +1,13 @@
+.nextflow.log*
+.nextflow/
+R/Rplots/
+R/edited_scripts/
+R/old_scripts/
+mcic-scripts/
+nextflow
+raw_data/
+ref/
+ref_genomes/
+results/
+sandbox/
+workflows/
