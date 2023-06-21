@@ -1,0 +1,4 @@
+sample,fastq_1,fastq_2,strandedness
+I8R124_S52,/fs/ess/PAS0471/nghi/rnaseq2/raw_data/subset/I8R124_S52_R1_001.fastq.gz,/fs/ess/PAS0471/nghi/rnaseq2/raw_data/subset/I8R124_S52_R2_001.fastq.gz,reverse
+I8R148_S72,/fs/ess/PAS0471/nghi/rnaseq2/raw_data/subset/I8R148_S72_R1_001.fastq.gz,/fs/ess/PAS0471/nghi/rnaseq2/raw_data/subset/I8R148_S72_R2_001.fastq.gz,reverse
+I8R172_S89,/fs/ess/PAS0471/nghi/rnaseq2/raw_data/subset/I8R172_S89_R1_001.fastq.gz,/fs/ess/PAS0471/nghi/rnaseq2/raw_data/subset/I8R172_S89_R2_001.fastq.gz,reverse
