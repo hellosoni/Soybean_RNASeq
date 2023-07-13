@@ -406,4 +406,75 @@ p <-ggplot(data = gsea_res_plot) +
 p + facet_grid(.~type) +   ggtitle("KEGG pathway enrichment at 72hpi")
 
 
+# Comparing M92 & FN0140856----
+gsea_res_plot <- gsea_res %>%
+  filter(contrast %in% c("M92Inoc_M92Mock_48", "M92Inoc_M92Mock_72","FN0140856Inoc_FN0140856Mock_48", "FN0140856Inoc_FN0140856Mock_72")) %>%
+  #filter(Description %in% focal_pathways) %>%
+  mutate(Description = sub(" - .*", "", Description),
+         Description = str_trunc(Description, width = 60)) %>%
+  filter(p.adjust < 0.05) %>%
+  add_count(category) %>%
+  filter(n < 3)
+
+gsea_res_plot$type = "upregulated"
+gsea_res_plot$type[gsea_res_plot$NES < 0] = "downregulated"
+
+
+p <-ggplot(data = gsea_res_plot) +
+  aes(x = contrast, y = Description, color = p.adjust, size = NES) +
+  geom_point() +
+  theme_bw() +
+  scale_color_viridis_c(direction = -1)
+
+
+p + facet_grid(.~type) + ggtitle("KEGG pathway enrichment for FN0140856 vs M92-220")
+
+# Comparing M92 & FN0170228---
+gsea_res_plot <- gsea_res %>%
+  filter(contrast %in% c("M92Inoc_M92Mock_48", "M92Inoc_M92Mock_72","FN0170228Inoc_FN0170228Mock_48", "FN0170228Inoc_FN0170228Mock_72")) %>%
+  #filter(Description %in% focal_pathways) %>%
+  mutate(Description = sub(" - .*", "", Description),
+         Description = str_trunc(Description, width = 60)) %>%
+  filter(p.adjust < 0.05) %>%
+  add_count(category) %>%
+  filter(n < 3)
+
+gsea_res_plot$type = "upregulated"
+gsea_res_plot$type[gsea_res_plot$NES < 0] = "downregulated"
+
+
+p <-ggplot(data = gsea_res_plot) +
+  aes(x = contrast, y = Description, color = p.adjust, size = NES) +
+  geom_point() +
+  theme_bw() +
+  scale_color_viridis_c(direction = -1)
+
+
+p + facet_grid(.~type) + ggtitle("KEGG pathway enrichment for FN0170228 vs M92-220")
+
+# Comparing M92 & FNMN0329----
+gsea_res_plot <- gsea_res %>%
+  filter(contrast %in% c("M92Inoc_M92Mock_48", "M92Inoc_M92Mock_72","FNMN0329Inoc_FNMN0329Mock_48", "FNMN0329Inoc_FNMN0329Mock_72")) %>%
+  #filter(Description %in% focal_pathways) %>%
+  mutate(Description = sub(" - .*", "", Description),
+         Description = str_trunc(Description, width = 60)) %>%
+  filter(p.adjust < 0.05) %>%
+  add_count(category) %>%
+  filter(n < 3)
+
+gsea_res_plot$type = "upregulated"
+gsea_res_plot$type[gsea_res_plot$NES < 0] = "downregulated"
+
+
+p <-ggplot(data = gsea_res_plot) +
+  aes(x = contrast, y = Description, color = p.adjust, size = NES) +
+  geom_point() +
+  theme_bw() +
+  scale_color_viridis_c(direction = -1)
+
+
+p + facet_grid(.~type) + ggtitle("KEGG pathway enrichment for FNMN0329 vs M92-220")
+
+
+
 

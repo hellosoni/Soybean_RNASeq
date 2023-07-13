@@ -14,7 +14,7 @@ dds_file <- "/fs/ess/PAS0471/nghi/rnaseq2/results/DE/dds.rds"
 
 functions_script <- "/fs/ess/PAS0471/nghi/rnaseq2/mcic-scripts/rnaseq/rfuns/DE_funs.R"
 
-
+# reported deleted genes list
 FN0170228_deleted_file <- "/fs/ess/PAS0471/nghi/rnaseq2/raw_data/meta/FN0170228_deleted.txt"
 FN0140856_deleted_file <- "/fs/ess/PAS0471/nghi/rnaseq2/raw_data/meta/FN0140856_deleted.txt"
 FNMN0329_deleted_file <- "/fs/ess/PAS0471/nghi/rnaseq2/raw_data/meta/FNMN0329_deleted.txt"
@@ -65,9 +65,7 @@ stopifnot(deleted %in% unique(count_df$gene))
 
 # Heatmap of genes reported to be deleted
 pheat(genes = deleted, count_mat = count_mat, meta_df = meta, groups = "Line")
-cheatmap(genes = deleted, count_mat = count_mat, meta_df = meta, groups = "Line", scale = TRUE)
-cheatmap(genes = deleted, count_mat = count_mat, meta_df = meta, groups = "Line",
-         logtrans = TRUE, heat_color_scheme = "blue_yellow_red")
+
 
 # Get a df with DE results including group means
 DE_res <- extract_DE(comp = c("M92_220", FOCAL_LINE),
@@ -86,10 +84,17 @@ message("Found ", length(DE_deleted), " potentially deleted genes")
 pheat(genes = DE_deleted, count_mat = count_mat, meta_df = meta, groups = "Line")
 cheatmap(genes = DE_deleted, count_mat = count_mat, meta_df = meta, groups = "Line", scale = TRUE)
 
-# Boxplots of genes from our DE analysis
+# Boxplots of reported deleted genes from our DE analysis
 map(.x = deleted, .f = pbox,
     count_df = count_df, x_by = "Treatment", col_by = "Line")
 
+# Check individual genes using boxplots
+FN0170228_genes <- "/fs/ess/PAS0471/nghi/rnaseq2/raw_data/meta/FN0170228_genes.txt"
+
+genes <- readLines(FN0170228_genes)
+
+map(.x = genes, .f = pbox,
+    count_df = count_df, x_by = "Treatment", col_by = "Line")
 
 # FN0140856 --------------------------------------------------------------------
 # Define line and deleted genes
@@ -118,11 +123,17 @@ message("Found ", length(DE_deleted), " potentially deleted genes")
 # Heatmap of genes from our DE analysis
 pheat(genes = DE_deleted, count_mat = count_mat, meta_df = meta, groups = "Line")
 
-cheat(genes = DE_deleted, count_mat = count_mat, meta_df = meta, groups = "Line",
-      scale = TRUE)
 
-# Boxplots of genes from our DE analysis
+# Boxplots of reported deleted genes from our DE analysis
 map(.x = deleted, .f = pbox,
+    count_df = count_df, x_by = "Treatment", col_by = "Line")
+
+# Check individual genes using boxplots
+FN0140856_genes <- "/fs/ess/PAS0471/nghi/rnaseq2/raw_data/meta/FN0140856_genes.txt"
+
+genes <- readLines(FN0140856_genes)
+
+map(.x = genes, .f = pbox,
     count_df = count_df, x_by = "Treatment", col_by = "Line")
 
 
@@ -153,7 +164,11 @@ message("Found ", length(DE_deleted), " potentially deleted genes")
 # Heatmap of genes from our DE analysis
 pheat(genes = DE_deleted, count_mat = count_mat, meta_df = meta, groups = "Line")
 
-# Boxplots of genes from our DE analysis
-map(.x = deleted, .f = pbox,
+# Check individual genes using boxplots
+FNMN0329_genes <- "/fs/ess/PAS0471/nghi/rnaseq2/raw_data/meta/FNMN0329_genes.txt"
+
+genes <- readLines(FNMN0329_genes)
+
+map(.x = genes, .f = pbox,
     count_df = count_df, x_by = "Treatment", col_by = "Line")
 
